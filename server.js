@@ -31,6 +31,11 @@ Entrega:
 `;
 
   try {
+    console.log('=================================');
+    console.log('RESPUESTAS RECIBIDAS:');
+    console.log(respuestas);
+    console.log('=================================');
+
     const openaiResponse = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
@@ -47,8 +52,29 @@ Entrega:
 
     const data = await openaiResponse.json();
 
-    const analisis =
-      data?.choices?.[0]?.message?.content || 'No se pudo generar el análisis.';
+    if (!openaiResponse.ok) {
+      console.log('=================================');
+      console.log('ERROR RESPUESTA OPENAI:');
+      console.log(data);
+      console.log('=================================');
+
+      return res.status(500).json({
+        error: data?.error?.message || 'Error al consultar OpenAI'
+      });
+    }
+
+    const analisis = data?.choices?.[0]?.message?.content;
+
+    if (!analisis) {
+      console.log('=================================');
+      console.log('RESPUESTA OPENAI SIN ANALISIS:');
+      console.log(data);
+      console.log('=================================');
+
+      return res.status(500).json({
+        error: 'OpenAI respondió, pero no devolvió análisis.'
+      });
+    }
 
     console.log('=================================');
     console.log('ANÁLISIS DEL CANDIDATO:');
@@ -59,7 +85,7 @@ Entrega:
 
   } catch (error) {
     console.error('ERROR EN ANÁLISIS:', error);
-    res.status(500).json({ error: 'Error en análisis' });
+    res.status(500).json({ error: 'Error interno en análisis' });
   }
 });
 
