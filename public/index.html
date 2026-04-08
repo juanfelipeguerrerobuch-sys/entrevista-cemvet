@@ -104,7 +104,7 @@ document.getElementById('form').addEventListener('submit', async (e) => {
   const data = Object.fromEntries(new FormData(form));
 
   try {
-    const res = await fetch('/api', {
+    const res = await fetch('https://entrevista-cemvet.onrender.com/api', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
