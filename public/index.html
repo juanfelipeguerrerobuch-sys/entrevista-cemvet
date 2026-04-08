@@ -115,7 +115,7 @@ form.addEventListener('submit', async (e) => {
   const data = Object.fromEntries(new FormData(form));
 
   try {
-    const res = await fetch('/api', {
+    const res = await fetch('https://entrevista-cemvet.onrender.com/api', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -123,8 +123,13 @@ form.addEventListener('submit', async (e) => {
       body: JSON.stringify(data)
     });
 
-    if (!res.ok) throw new Error("Error servidor");
+    const result = await res.json();
 
+    if (!res.ok) {
+      throw new Error(result.error || "Error servidor");
+    }
+
+    console.log('RESPUESTA SERVIDOR:', result);
     msg.innerText = "Formulario enviado correctamente ✅";
     form.reset();
 
