@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Entrevista CEMVET</title>
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -20,23 +21,16 @@
 
     h1 {
       margin-bottom: 25px;
-      font-size: 36px;
-      line-height: 1.2;
-    }
-
-    p.sub {
-      color: #d5e5dd;
-      margin-bottom: 25px;
+      font-size: 34px;
     }
 
     input, textarea {
       width: 100%;
       padding: 12px;
       margin: 10px 0;
-      box-sizing: border-box;
-      border: none;
       border-radius: 6px;
-      font-size: 15px;
+      border: none;
+      font-size: 14px;
     }
 
     textarea {
@@ -45,116 +39,102 @@
     }
 
     button {
-      padding: 14px;
       width: 100%;
+      padding: 14px;
       background: #00c897;
       border: none;
-      color: black;
+      border-radius: 6px;
       font-weight: bold;
       cursor: pointer;
-      border-radius: 6px;
-      font-size: 16px;
-      margin-top: 10px;
-    }
-
-    button:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
+      color: black;
     }
 
     #msg {
       margin-top: 20px;
       font-weight: bold;
     }
-
-    .box {
-      background: rgba(255,255,255,0.04);
-      padding: 24px;
-      border-radius: 10px;
-    }
   </style>
 </head>
+
 <body>
-  <div class="container">
-    <div class="box">
-      <h1>Entrevista Asistente Administrativo CEMVET</h1>
-      <p class="sub">Completa la entrevista. Al enviar, el sistema procesará las respuestas.</p>
 
-      <form id="form">
-        <input type="text" placeholder="Nombre completo" name="nombre" required>
-        <input type="email" placeholder="Correo electrónico" name="correo" required>
+<div class="container">
+  <h1>Entrevista Asistente Administrativo - CEMVET</h1>
 
-        <textarea placeholder="Cuéntanos tu experiencia en atención al cliente" name="experiencia" required></textarea>
-        <textarea placeholder="¿Cómo manejas clientes difíciles?" name="conflictos" required></textarea>
-        <textarea placeholder="¿Por qué quieres trabajar con nosotros?" name="motivacion" required></textarea>
-        <textarea placeholder="¿Cómo organizas tu día cuando tienes muchas tareas?" name="organizacion" required></textarea>
-        <textarea placeholder="¿Qué haces cuando cometes un error en el trabajo?" name="errores" required></textarea>
-        <textarea placeholder="¿Cómo manejas el estrés en momentos de alta demanda?" name="estres" required></textarea>
-        <textarea placeholder="¿Te consideras una persona ordenada? Explica." name="orden" required></textarea>
-        <textarea placeholder="¿Cómo priorizas tareas urgentes vs importantes?" name="prioridades" required></textarea>
-        <textarea placeholder="¿Has trabajado con agenda o citas? Cuéntanos." name="agenda" required></textarea>
-        <textarea placeholder="¿Cómo manejas llamadas telefónicas difíciles?" name="llamadas" required></textarea>
-        <textarea placeholder="¿Qué significa para ti el servicio al cliente?" name="servicio" required></textarea>
-        <textarea placeholder="¿Cómo reaccionas ante una queja fuerte de un cliente?" name="quejas" required></textarea>
-        <textarea placeholder="¿Qué harías si un cliente llega muy molesto?" name="cliente_molesto" required></textarea>
-        <textarea placeholder="¿Cómo trabajas en equipo?" name="equipo" required></textarea>
-        <textarea placeholder="¿Prefieres seguir instrucciones o tomar decisiones?" name="decision" required></textarea>
-        <textarea placeholder="¿Qué harías si no sabes cómo hacer algo?" name="incertidumbre" required></textarea>
-        <textarea placeholder="¿Cómo manejas información confidencial?" name="confidencialidad" required></textarea>
-        <textarea placeholder="¿Te consideras puntual?" name="puntualidad" required></textarea>
-        <textarea placeholder="¿Cómo reaccionas ante cambios inesperados?" name="cambios" required></textarea>
-        <textarea placeholder="¿Qué te motiva a trabajar?" name="motivacion_personal" required></textarea>
-        <textarea placeholder="¿Qué esperas de este trabajo?" name="expectativas" required></textarea>
-        <textarea placeholder="¿Por qué deberíamos contratarte?" name="contratacion" required></textarea>
-        <textarea placeholder="Describe tu mayor fortaleza" name="fortaleza" required></textarea>
-        <textarea placeholder="Describe tu mayor debilidad" name="debilidad" required></textarea>
+  <form id="form">
 
-        <button type="submit" id="submitBtn">Enviar</button>
-      </form>
+    <input name="nombre" placeholder="Nombre completo" required>
+    <input type="email" name="correo" placeholder="Correo electrónico" required>
 
-      <p id="msg"></p>
-    </div>
-  </div>
+    <textarea name="experiencia" placeholder="Experiencia en atención al cliente" required></textarea>
+    <textarea name="conflictos" placeholder="¿Cómo manejas clientes difíciles?" required></textarea>
+    <textarea name="motivacion" placeholder="¿Por qué quieres trabajar con nosotros?" required></textarea>
+    <textarea name="organizacion" placeholder="¿Cómo organizas tu día?" required></textarea>
+    <textarea name="errores" placeholder="¿Qué haces cuando cometes un error?" required></textarea>
+    <textarea name="estres" placeholder="¿Cómo manejas el estrés?" required></textarea>
+    <textarea name="orden" placeholder="¿Eres una persona ordenada?" required></textarea>
+    <textarea name="prioridades" placeholder="¿Cómo priorizas tareas?" required></textarea>
+    <textarea name="agenda" placeholder="Experiencia con agendas" required></textarea>
+    <textarea name="llamadas" placeholder="Manejo de llamadas difíciles" required></textarea>
+    <textarea name="servicio" placeholder="¿Qué es servicio al cliente?" required></textarea>
+    <textarea name="quejas" placeholder="¿Cómo manejas quejas?" required></textarea>
+    <textarea name="cliente_molesto" placeholder="Cliente molesto" required></textarea>
+    <textarea name="equipo" placeholder="Trabajo en equipo" required></textarea>
+    <textarea name="decision" placeholder="¿Sigues o decides?" required></textarea>
+    <textarea name="incertidumbre" placeholder="Cuando no sabes algo" required></textarea>
+    <textarea name="confidencialidad" placeholder="Manejo de información" required></textarea>
+    <textarea name="puntualidad" placeholder="¿Eres puntual?" required></textarea>
+    <textarea name="cambios" placeholder="Cambios inesperados" required></textarea>
+    <textarea name="motivacion_personal" placeholder="Motivación personal" required></textarea>
+    <textarea name="expectativas" placeholder="Expectativas del trabajo" required></textarea>
+    <textarea name="contratacion" placeholder="¿Por qué contratarte?" required></textarea>
+    <textarea name="fortaleza" placeholder="Fortaleza" required></textarea>
+    <textarea name="debilidad" placeholder="Debilidad" required></textarea>
 
-  <script>
-    const form = document.getElementById('form');
-    const btn = document.getElementById('submitBtn');
-    const msg = document.getElementById('msg');
+    <button type="submit">Enviar</button>
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
+  </form>
 
-      btn.disabled = true;
-      msg.textContent = 'Enviando...';
+  <p id="msg"></p>
+</div>
 
-      const data = Object.fromEntries(new FormData(form));
+<script>
+const URL = "https://entrevista-cemvet.onrender.com/api";
 
-      try {
-        const res = await fetch('/api', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(data)
-        });
+document.getElementById("form").addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-        const result = await res.json();
+  const msg = document.getElementById("msg");
+  msg.innerText = "Enviando...";
 
-        if (!res.ok) {
-          throw new Error(result.error || 'Error al enviar');
-        }
+  const data = Object.fromEntries(new FormData(e.target));
 
-        console.log('RESPUESTA SERVIDOR:', result);
-        msg.textContent = 'Formulario enviado correctamente ✅';
-        form.reset();
-
-      } catch (err) {
-        console.error('ERROR FRONTEND:', err);
-        msg.textContent = 'Error al enviar ❌';
-      } finally {
-        btn.disabled = false;
-      }
+  try {
+    const res = await fetch(URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
     });
-  </script>
+
+    const text = await res.text();
+
+    if (!res.ok) {
+      throw new Error(text);
+    }
+
+    console.log("RESPUESTA:", text);
+
+    msg.innerText = "Formulario enviado correctamente ✅";
+    e.target.reset();
+
+  } catch (err) {
+    console.error("ERROR:", err);
+    msg.innerText = "Error al enviar ❌";
+  }
+});
+</script>
+
 </body>
 </html>
