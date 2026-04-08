@@ -1,106 +1,3 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Entrevista CEMVET</title>
-
-<style>
-body {
-  font-family: Arial, sans-serif;
-  background: #0D1F1A;
-  color: white;
-  padding: 40px;
-}
-
-.container {
-  max-width: 700px;
-  margin: auto;
-}
-
-h1 {
-  margin-bottom: 25px;
-}
-
-input, textarea {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  box-sizing: border-box;
-  border: none;
-  border-radius: 5px;
-}
-
-textarea {
-  min-height: 90px;
-  resize: vertical;
-}
-
-button {
-  padding: 14px;
-  width: 100%;
-  background: #00c897;
-  border: none;
-  color: black;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-button:disabled {
-  opacity: 0.6;
-}
-
-#msg {
-  margin-top: 20px;
-  font-weight: bold;
-}
-</style>
-</head>
-
-<body>
-
-<div class="container">
-<h1>Entrevista Asistente Administrativo - CEMVET</h1>
-
-<form id="form">
-
-<input type="text" placeholder="Nombre completo" name="nombre" required>
-<input type="email" placeholder="Correo electrónico" name="correo" required>
-
-<textarea placeholder="Cuéntanos tu experiencia en atención al cliente" name="experiencia" required></textarea>
-<textarea placeholder="¿Cómo manejas clientes difíciles?" name="conflictos" required></textarea>
-<textarea placeholder="¿Por qué quieres trabajar con nosotros?" name="motivacion" required></textarea>
-<textarea placeholder="¿Cómo organizas tu día cuando tienes muchas tareas?" name="organizacion" required></textarea>
-<textarea placeholder="¿Qué haces cuando cometes un error en el trabajo?" name="errores" required></textarea>
-<textarea placeholder="¿Cómo manejas el estrés en momentos de alta demanda?" name="estres" required></textarea>
-<textarea placeholder="¿Te consideras una persona ordenada? Explica." name="orden" required></textarea>
-<textarea placeholder="¿Cómo priorizas tareas urgentes vs importantes?" name="prioridades" required></textarea>
-<textarea placeholder="¿Has trabajado con agenda o citas? Cuéntanos." name="agenda" required></textarea>
-<textarea placeholder="¿Cómo manejas llamadas telefónicas difíciles?" name="llamadas" required></textarea>
-<textarea placeholder="¿Qué significa para ti el servicio al cliente?" name="servicio" required></textarea>
-<textarea placeholder="¿Cómo reaccionas ante una queja fuerte de un cliente?" name="quejas" required></textarea>
-<textarea placeholder="¿Qué harías si un cliente llega muy molesto?" name="cliente_molesto" required></textarea>
-<textarea placeholder="¿Cómo trabajas en equipo?" name="equipo" required></textarea>
-<textarea placeholder="¿Prefieres seguir instrucciones o tomar decisiones?" name="decision" required></textarea>
-<textarea placeholder="¿Qué harías si no sabes cómo hacer algo?" name="incertidumbre" required></textarea>
-<textarea placeholder="¿Cómo manejas información confidencial?" name="confidencialidad" required></textarea>
-<textarea placeholder="¿Te consideras puntual?" name="puntualidad" required></textarea>
-<textarea placeholder="¿Cómo reaccionas ante cambios inesperados?" name="cambios" required></textarea>
-<textarea placeholder="¿Qué te motiva a trabajar?" name="motivacion_personal" required></textarea>
-<textarea placeholder="¿Qué esperas de este trabajo?" name="expectativas" required></textarea>
-<textarea placeholder="¿Por qué deberíamos contratarte?" name="contratacion" required></textarea>
-<textarea placeholder="Describe tu mayor fortaleza" name="fortaleza" required></textarea>
-<textarea placeholder="Describe tu mayor debilidad" name="debilidad" required></textarea>
-
-<button type="submit" id="submitBtn">Enviar</button>
-
-</form>
-
-<p id="msg"></p>
-
-</div>
-
 <script>
 const form = document.getElementById('form');
 const btn = document.getElementById('submitBtn');
@@ -114,6 +11,8 @@ form.addEventListener('submit', async (e) => {
 
   const data = Object.fromEntries(new FormData(form));
 
+  console.log("DATOS A ENVIAR:", data);
+
   try {
     const res = await fetch('https://entrevista-cemvet.onrender.com/api', {
       method: 'POST',
@@ -123,24 +22,19 @@ form.addEventListener('submit', async (e) => {
       body: JSON.stringify(data)
     });
 
-    const result = await res.json();
+    console.log("STATUS:", res.status);
 
-    if (!res.ok) {
-      throw new Error(result.error || "Error servidor");
-    }
+    const text = await res.text(); // 👈 importante para debug
+    console.log("RESPUESTA RAW:", text);
 
-    console.log('RESPUESTA SERVIDOR:', result);
-    msg.innerText = "Formulario enviado correctamente ✅";
+    msg.innerText = "Formulario enviado ✅";
     form.reset();
 
   } catch (err) {
+    console.error("ERROR:", err);
     msg.innerText = "Error al enviar ❌";
-    console.error(err);
   }
 
   btn.disabled = false;
 });
 </script>
-
-</body>
-</html>
