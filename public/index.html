@@ -1,10 +1,74 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-<title>CEMVET Entrevista</title>
+<meta charset="UTF-8">
+<title>Entrevista CEMVET</title>
+<style>
+body {
+  font-family: Arial;
+  background: #0D1F1A;
+  color: white;
+  padding: 40px;
+}
+.container {
+  max-width: 600px;
+  margin: auto;
+}
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+}
+button {
+  padding: 12px;
+  background: #00c897;
+  border: none;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+}
+</style>
 </head>
+
 <body>
-<h1>Ya funciona 🚀</h1>
-<p>Luego aquí pondremos el formulario real</p>
+
+<div class="container">
+<h1>Entrevista Asistente Administrativo - CEMVET</h1>
+
+<form id="form">
+
+<input placeholder="Nombre completo" name="nombre" required>
+
+<textarea placeholder="Cuéntanos tu experiencia en atención al cliente" name="experiencia" required></textarea>
+
+<textarea placeholder="¿Cómo manejas clientes difíciles?" name="conflictos" required></textarea>
+
+<textarea placeholder="¿Por qué quieres trabajar con nosotros?" name="motivacion" required></textarea>
+
+<button type="submit">Enviar</button>
+
+</form>
+
+<p id="msg"></p>
+
+</div>
+
+<script>
+document.getElementById('form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const data = Object.fromEntries(new FormData(e.target));
+
+  const res = await fetch('/api', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  });
+
+  const result = await res.json();
+  document.getElementById('msg').innerText = "Formulario enviado ✅";
+});
+</script>
+
 </body>
 </html>
