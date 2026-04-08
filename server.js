@@ -1,7 +1,9 @@
 import express from 'express';
 
 const app = express();
+
 app.use(express.json());
+app.use(express.static('public'));
 
 app.post('/api', async (req, res) => {
   const respuestas = req.body;
@@ -36,24 +38,33 @@ Entrega:
         'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
       },
       body: JSON.stringify({
-        model: "gpt-4o-mini",
+        model: 'gpt-4o-mini',
         messages: [
-          { role: "user", content: prompt }
+          { role: 'user', content: prompt }
         ]
       })
     });
 
     const data = await openaiResponse.json();
 
-    console.log("ANÁLISIS DEL CANDIDATO:\n", data.choices[0].message.content);
+    const analisis =
+      data?.choices?.[0]?.message?.content || 'No se pudo generar el análisis.';
 
-    res.json({ ok: true });
+    console.log('=================================');
+    console.log('ANÁLISIS DEL CANDIDATO:');
+    console.log(analisis);
+    console.log('=================================');
+
+    res.json({ ok: true, analisis });
 
   } catch (error) {
-    console.error(error);
+    console.error('ERROR EN ANÁLISIS:', error);
     res.status(500).json({ error: 'Error en análisis' });
   }
 });
 
 const PORT = process.env.PORT || 10000;
-app.listen(PORT, () => console.log("Servidor activo en puerto " + PORT));
+
+app.listen(PORT, () => {
+  console.log('Servidor activo en puerto ' + PORT);
+});
